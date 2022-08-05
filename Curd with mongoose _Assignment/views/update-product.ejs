@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('includes/head.ejs') %>
+</head>
+<body>
+    <%- include('includes/navigation-menu.ejs') %>
+<main>
+    <% if(alert){%>
+        <%- include("includes/alerts.ejs")%>
+        <%}%>
+    <div class="container my-5">
+        <form action="/shopping/update-product" method="post">
+
+        <div class="row">
+            <div class="col-md-5">
+
+                    <label  class="form-label">
+                        Existing Product Name
+                    </label>
+                    <select class="form-control mb-3" name="updatingProductName">
+                        <option>--Select--</option>
+                        <% for(let product of products) {%>
+                            <option value="<%= product._id %>"><%= product.title %></option>
+                        <% } %>
+                    </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+
+                    <label  class="form-label">
+                        New Product Name
+                    </label>
+                    <p>
+                        <input type="text" class="form-control" name="newName">
+                    </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+
+                    <label  class="form-label">
+                        New Price
+                    </label>
+                    <p>
+                        <input type="number" class="form-control" name="newPrice">
+                    </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <%if(products.length>0){%>
+                    <button class="btn btn-primary">Update</button>
+                <%}else{%>
+                    <button class="btn btn-primary disabled">Update</button>
+                <%}%>
+            </div>
+        </div>
+    </form>
+    </div>
+</main>
+<%- include('includes/footer.ejs') %>
+<%- include('includes/end.ejs') %>
